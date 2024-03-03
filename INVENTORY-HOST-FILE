@@ -20,4 +20,4 @@ vi /etc/ansible/hosts
 
 and the paste the above inside the host file by scrolling down to the last where there no more line of codes and then paste the above inventory host file and save-quit
 
-So that your ansible will be able to manage all these hosts above
+So that your ansible will be able to communicate with all these hosts above
