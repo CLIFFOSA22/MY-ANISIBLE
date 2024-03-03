@@ -1,0 +1,18 @@
+HOME DIRECTORY OF host file is   /etc/ansible/hosts 
+
+home directory for host file is created by default as soon as ansible engibne is install in any of the linux distribution
+[HostName]
+hostPublicIp ansible_user=ec2-user ansible-ansible_ssh_private_key_file=PathTossh-key
+
+You can have multiple host like db server, web server app server etc. the inventory host file will be in form of 
+
+[db]
+54.175.186.47 ansible_user=ec2-user  ansible_ssh_private_key_file=/tmp/ansible.pem 
+
+[web]
+172.31.87.249 ansible_user=ubuntu    ansible_ssh_private_key_file=/tmp/ansible.pem
+
+[app]
+52.91.235.177 ansible_user=ubuntu    ansible_ssh_private_key_file=/tmp/ansible.pem
+
+So that your ansible will be able to manage all these hosts above
