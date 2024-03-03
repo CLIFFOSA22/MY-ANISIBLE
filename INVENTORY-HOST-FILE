@@ -15,4 +15,9 @@ You can have multiple host like db server, web server app server etc. the invent
 [app]
 52.91.235.177 ansible_user=ubuntu    ansible_ssh_private_key_file=/tmp/ansible.pem
 
+
+vi /etc/ansible/hosts
+
+and the paste the above inside the host file by scrolling down to the last where there no more line of codes and then paste the above inventory host file and save-quit
+
 So that your ansible will be able to manage all these hosts above
