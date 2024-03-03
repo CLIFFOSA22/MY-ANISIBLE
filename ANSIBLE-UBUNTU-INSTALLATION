@@ -1,0 +1,16 @@
+Ansible installation in ubuntu
+
+# ssh into your ubuntu-server you created
+sudo hostnamectl set-hostname ansible
+
+sudo adduser ansible  # You have to manage ansible as ansible user
+
+echo "ansible  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible  # To assign sudo right
+sudo su - ansible
+# To install ansible software run the below two commands
+sudo apt-add-repository ppa:ansible/ansible  
+sudo apt install ansible  -y 
+
+To in ansible has been installed, run
+
+ansible --version
