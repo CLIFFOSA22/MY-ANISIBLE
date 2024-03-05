@@ -25,3 +25,12 @@ i prefer the below
        - vim
        - zip
        - unzip  
+
+You can install loop in just one host like below
+
+- hosts: web
+  become: true
+  tasks:
+   - name: Install list of packages
+     package:
+       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
