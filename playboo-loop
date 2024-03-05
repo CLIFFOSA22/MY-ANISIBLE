@@ -25,7 +25,8 @@ or
      state: present
 
 
-both are the same but i thinkl the first one is simplier
+both are the same but i think the first one is simplier but use package as the module by replaing yum with package. package module can be used in all linux 
+distribution
 
 
 You can install loop in just one host like below
