@@ -1,0 +1,27 @@
+- hosts: dev
+  become: true 
+  vars:
+  -     
+  tasks: 
+  - name: 1. install httpd   
+    package: name=httpd state=present  
+  - name: 2. start apache
+    service: name=httpd state=started   
+  - name: 3. copy index file 
+    copy: src=index.html  dest=/var/www/html/index.html
+    ignore_errors: true 
+  - name: 4. enable password authentication
+    copy: src= dest=  
+    notify:
+    - restart sshd 
+  - name: 5. change the default port for apache 
+    copy: src= dest=  
+    notify:
+    - restart apache  
+  handlers:
+  - name: restart apache   
+    systemd: name=httpd start=restarted
+  - name: restart sshd
+    service: 
+      name: sshd 
+      state: restarted  
