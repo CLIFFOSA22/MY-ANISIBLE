@@ -1,19 +1,5 @@
 You can use a playbook loop to install packages like vim, wget, git, nano, zip, unzip as below
 
-Playbooks with loops
-
-- hosts: localhost
-  become: true
-  tasks:
-   - name: Install list of packages
-     yum:
-       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
-     when: ("ansible_distribution" == "RedHat")
-
-or
-
-i prefer the below
-
 - hosts: localhost
   become: true
   tasks:
