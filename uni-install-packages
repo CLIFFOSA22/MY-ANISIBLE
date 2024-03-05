@@ -1,0 +1,10 @@
+to install the packages below, just only chamge the state from present to absent
+
+- hosts: localhost
+  become: true
+  tasks:
+   - name: Install list of packages
+     yum:
+       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+       state: absent
+  when: ("ansible_distribution" == "RedHat")
