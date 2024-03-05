@@ -1,3 +1,5 @@
+using playbook ansible to create ansible user in ansible hosts that are listed on the inventory host file
+
 - hosts: all
   become: yes
   tasks:
