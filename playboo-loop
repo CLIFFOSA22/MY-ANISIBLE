@@ -3,20 +3,42 @@ You can use a playbook loop to install packages like vim, wget, git, nano, zip, 
 - hosts: localhost
   become: true
   tasks:
+   - name: Install list of packages
+     yum:
+       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+       state: present
+
+or
+
+
+- hosts: dev
+  become: true
+  tasks:
     - name: Install list of packages
-      yum: name='{{item}}' state=present
+      package: name='{{item}}' state=present
       with_items:
        - nano
        - wget
        - vim
        - zip
        - unzip  
+     state: present
+
+
+both are the same but i thinkl the first one is simplier
+
 
 You can install loop in just one host like below
 
-- hosts: web
+- hosts: dev
   become: true
   tasks:
-   - name: Install list of packages
-     package:
-       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+    - name: Install list of packages
+      package: name='{{item}}' state=present
+      with_items:
+       - nano
+       - wget
+       - vim
+       - zip
+       - unzip  
+     state: present
