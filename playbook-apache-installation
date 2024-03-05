@@ -1,0 +1,84 @@
+
+- hosts: web
+  become: true
+  tasks:
+  - name: uninstall apache
+    package: name=httpd state=present
+  - name: start apache
+    service: name=httpd state=started
+  - name: copy index file
+    copy:
+      src: index.html
+      dest: /var/www/html/
+
+- hosts: app
+  become: true
+  tasks:
+  - name: install apache
+    package: name=httpd state=present
+  - name: start apache
+    service: name=httpd state=started
+  - name: copy index file
+    copy:
+      src: index.html
+      dest: /var/www/html/
+
+- hosts: demo
+  become: true
+  tasks:
+  - name: install apache
+    package: name=httpd state=present
+  - name: start apache
+    service: name=httpd state=started
+  - name: copy index file
+    copy:
+      src: index.html
+      dest: /var/www/html/
+
+- hosts: test
+  become: true
+  tasks:
+  - name: install apache
+    package: name=httpd state=present
+  - name: start apache
+    service: name=httpd state=started
+  - name: copy index file
+    copy:
+      src: index.html
+      dest: /var/www/html/
+
+- hosts: all
+  become: true
+  tasks:
+  - name: install vim
+    package: name=vim state=present
+
+- hosts: localhost
+  tasks:
+  - name: check system resources
+    shell: df -h
+
+or
+
+- hosts: all
+  become: true
+  tasks:
+  - name: install apache
+    package: name=httpd state=present
+  - name: start apache
+    service: name=httpd state=started
+  - name: copy index file
+    copy:
+      src: index.html
+      dest: /var/www/html/
+
+- hosts: all
+  become: true
+  tasks:
+  - name: install vim
+    package: name=vim state=present
+
+- hosts: localhost
+  tasks:
+  - name: check system resources
+    shell: df -h
