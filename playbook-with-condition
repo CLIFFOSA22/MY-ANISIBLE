@@ -1,0 +1,12 @@
+This a playbook that has a condition attached to the file. like the word "when"  as see below
+
+- hosts: localhost
+  become: true
+  tasks:
+   - name: Install list of packages
+     yum:
+       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+       state: present
+  when: ("ansible_distribution" == "RedHat")
+
+  This means that it can only install the packages on only linux distribution with redhat engine. It means it cannot install in ubuntu
