@@ -1,0 +1,39 @@
+HOW TO communicate with HOST WITH COMMAND AND ARGUMENT
+
+Ping module
+ansible hostName -m ping
+
+shell module
+ansible hostName -m shell -a "df -h"  ---> to show available space or storage size or memory size of the host  or server or ec2-server
+
+ansible hostname -m shell -a "df -h" --extra-vars "password=admin123"   storage size for host with variable password
+
+ansible hostname -m shell -a "kubectl get nodes" --extra-vars "password=admin123" to list nodes in k8s host with variable password 
+
+playbook command
+ansible-playbook playbookFileName ---->   for default for default inventory host file which is  (/etc/ansible/hosts )
+
+ansible-playbook playbookFileName  -i custom-hosts -> for default for default inventory host file which is  ( if the custom host file was named custom-hosts)
+
+ansible-playbook playbookFileName --syntax-check ---->   to check if thee is syntax error
+
+ansible-playbook playbookFileName --check ----> to run a dry-run to know what you are expected to see before. it can also run as syntax.
+
+ ansible serverName -m setup -i hosts    to check the linux distribution of your host
+
+ ansible k8s -m shell -a "kubectl get pod" --vault-password=v-file
+ 
+ansible vault command
+amsible k8s -m ping --ask-vault-pass       for default inventory host file
+
+note if the group variable was created in your custom host file (if the custom host file you created was custom-host), you run the below
+
+amsible k8s -m ping -i custom-hosts --ask-vault-pass        for custom inventory host file ( if the custom host file was named custom-hosts)      
+
+For the purpose of automation. you can create a file and paste the vault paasowrd insid. like (password=kim123)
+
+ansible k8s -m shell -a "kubectl get pod" --vault-password=passwordFileName
+
+it will list pods in k8s cluster without asking for vault password
+
+ansible k8s -m ping --vault-password=passwordFileName
