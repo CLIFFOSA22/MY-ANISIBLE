@@ -73,3 +73,22 @@ ansible k8s -m shell -a "kubectl get pod" --vault-password=v-file
 it will list pods in k8s cluster without asking for vault passwrd
 
 ansible k8s -m ping --vault-password=v-file
+
+NOTE:
+
+This vault password configuration that you have done will take over your enter ansible environment so that anytime you want to perform any command, you would have to parse the vault password command  
+
+--vault-password=passwordFileName       ----> when vault password is saved it in a file
+
+     or
+
+--ask-vault-pass        ----> when vault password is not saved it in a file
+
+if you run
+
+ansible all -m ping --vault-password=v-file.yml           for a default inventory file
+
+it will ping everything hosts in your default inventory file
+
+The vault passowrd is the key that will open your ansible environment for any action or command to take place
+
