@@ -45,3 +45,20 @@ When you want to run a command in you host via your ansible environment, you mus
 amsible k8s -m shell -a "kubectl get nodes" --ask-vault-pass
 
 ansible k8s -m shell -a "df -h" --ask-vault-pass
+
+If you want a situation whereby you do not want the vault to ask for passpwrd for the 
+benefit of automation, You can also just create a vault password file.
+
+Let say the vault password is kim123. the will will paste the below into the file
+
+password: kim123
+
+and save-quit.
+
+if you run the command
+
+ansible k8s -m shell -a "kubectl get pod" --vault-password=v-file
+
+it will list pods in k8s cluster without asking for vault passwrd
+
+ansible k8s -m ping --vault-password=v-file
