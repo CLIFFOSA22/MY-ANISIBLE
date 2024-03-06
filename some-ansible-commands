@@ -30,7 +30,11 @@ note if the group variable was created in your custom host file (if the custom h
 
 amsible k8s -m ping -i custom-hosts --ask-vault-pass        for custom inventory host file ( if the custom host file was named custom-hosts)      
 
-For the purpose of automation. you can create a file and paste the vault paasowrd insid. like (password=kim123)
+For the purpose of automation. you can create a file and paste the vault paasowrd insid. like
+
+kim123
+
+which is the vault password you maybe have used and then save it in a file
 
 ansible k8s -m shell -a "kubectl get pod" --vault-password=passwordFileName
 
