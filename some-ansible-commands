@@ -37,3 +37,11 @@ ansible k8s -m shell -a "kubectl get pod" --vault-password=passwordFileName
 it will list pods in k8s cluster without asking for vault password
 
 ansible k8s -m ping --vault-password=passwordFileName
+
+NOTE:
+
+When you want to run a command in you host via your ansible environment, you must parse a shell module -m shell   and also parse an argument -a   and the command will be inside ""  like below
+
+amsible k8s -m shell -a "kubectl get nodes" --ask-vault-pass
+
+ansible k8s -m shell -a "df -h" --ask-vault-pass
