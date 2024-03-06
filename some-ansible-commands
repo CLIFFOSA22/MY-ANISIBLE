@@ -24,11 +24,18 @@ ansible-playbook playbookFileName --check ----> to run a dry-run to know what yo
  ansible k8s -m shell -a "kubectl get pod" --vault-password=v-file
  
 ansible vault command
-amsible k8s -m ping --ask-vault-pass       for default inventory host file
 
-note if the group variable was created in your custom host file (if the custom host file you created was custom-host), you run the below
+FOR GROUP VARIABLE 
 
-amsible k8s -m ping -i custom-hosts --ask-vault-pass        for custom inventory host file ( if the custom host file was named custom-hosts)      
+amsible-vault encrypt /etc/ansible/directoryName/passwordName       for default inventory host file
+
+amsible-vault encrypt /etc/ansible/directoryName/passwordName       for default inventory host file
+
+it wil ask you to enter new vault password, enter the password you like and confirm the password
+
+amsible k8s-kops -m ping --ask-vault-pass       for default inventory host file
+
+enter the vault password     
 
 For the purpose of automation. you can create a file and paste the vault paasowrd insid. like
 
