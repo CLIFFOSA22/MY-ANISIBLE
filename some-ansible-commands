@@ -92,3 +92,90 @@ it will ping everything hosts in your default inventory file
 
 The vault passowrd is the key that will open your ansible environment for any action or command to take place
 
+1. STEP BY STEP TASK
+
+We have different task to be executed in a playbook and you want to be sure of which task you actually want to execute. Maybe you change you mind to execute a specifc task in the playbook. You can run a playbook step command like
+
+ansible-playbook playbookName --step       it will run from a default inventoryFile
+
+
+ansible-playbook ae.yml -e "index=osas"  --step --vault-password=v-file.yml
+
+or
+
+ ansible-playbook ae.yml --extra-vars "index=osas"  --step --vault-password=v-file.yml
+
+
+It will run each task step by step that is in your playbook. If you do not want a task that display, you can type in NO and if you want the task that display, you can type in YES.
+
+When prof run the playbook step command, it shows gathering facts, prof press "n" as NO because he didnt want it to gather facts. You can do same for any task you do want it to execute.
+
+IQ
+
+What module is responsible in the gathering of facts in ansible.
+
+Answer: the answer is setup module
+
+The setup modules will tell you how your operating system for your host is. The name of your operating system, the size and other info.
+
+ansible demo-1 -m setup             
+
+ansible demo-1 -m setup -e "index=osas"--vault-password=v-file.yml
+
+they both will read from the default host file
+
+IQ
+
+HOW IS A SPECIFIC TASK RUNNED OR EXECUTED IN A PLAYBOOK?
+
+answer: 
+
+There are different options that you can use.
+
+1. ansible-playbook apache.yml  --step   this run task step by step and allow you to type in YES or NO. THis may be tideous if you have multiple tasks that may be up to a 100. it will be time consuming and tideous to be typing yes or no.
+
+
+2. Assign tags to task
+ 
+ Let us place a tag on each task we have in our playbook as already done above. 
+
+ Let only install apache as task we want to do in the playbook above as an example.
+
+ the tag name for the task "install apache" is 'install'   we can now run the command
+
+ ansible-playbook apache.yml  --tags 'install'
+
+ ansible-playbook apache.yml  -e "index=osas"  --tags 'install' --vault-password=v-file.yml
+
+
+You will see that it will install apache. Note: since there is a notifier that will notify handler that appache has been installed and the it should start apache as defined in the playbook, handler will run. and so apache will be started.
+
+I think assiging a tag to all the tasks will be it more easier to run a specific tasks in a playbook than a step command
+
+3. skip-tags
+
+This is used to skip multiple tags
+
+You can skip tags that is assigned to task.
+
+Let us skip the tags called install and index to make sure that they do not run, since we already have install tags running already. We want others to run also by skipping index tags and install tags. we decided to also skip install tags because its already running. by running
+
+ansible-playbook apache.yml  --skip-tags 'install,index'
+
+once you run the command, it will tell you that there us undefined variable called dynamic content which as defined on the playbook. There was a variable content on that task and the content was "{{index}}"  we need to define this variable by saying what that variable means.
+
+You can defined "{{index}}"  as -e "index=devops"
+
+You can defined "{{index}}"  as --extra-vars "index=devops"
+
+You can now skip both install and index tags as below
+
+ansible-playbook --skip-tags 'install, index' -e "index=devops"
+
+ansible-playbook --skip-tags 'install, index' --extra-vars "index=landmark"
+
+or
+
+ansible-playbook --skip-tags 'install, index' --extra-vars "index=landmark" --vault-password=v-file.yml
+
+
